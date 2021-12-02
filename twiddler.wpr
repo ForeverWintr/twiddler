@@ -1,0 +1,19 @@
+#!wing
+#!version=8.0
+##################################################################
+# Wing project file                                              #
+##################################################################
+[project attributes]
+proj.directory-list = [{'dirloc': loc('.'),
+                        'excludes': ['twiddler'],
+                        'filter': '*',
+                        'include_hidden': False,
+                        'recursive': True,
+                        'watch_for_changes': True}]
+proj.file-type = 'shared'
+proj.launch-config = {loc('src/twiddler/__main__.py'): ('project',
+        ('dev',
+         ''))}
+testing.auto-test-file-specs = (('glob',
+                                 'test_*.py'),)
+testing.test-framework = {None: ':internal pytest'}

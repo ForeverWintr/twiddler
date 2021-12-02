@@ -1,0 +1,49 @@
+[tool.briefcase]
+project_name = "Twiddler"
+bundle = "ca.pylithic"
+version = "0.0.1"
+url = "https://pylithic.ca/twiddler"
+license = "MIT license"
+author = 'Pylithic Software Ltd.'
+author_email = "info@pylithic.ca"
+
+[tool.briefcase.app.twiddler]
+formal_name = "Twiddler"
+description = "Parameter Tuner"
+icon = "src/twiddler/resources/twiddler"
+sources = ['src/twiddler']
+requires = []
+
+
+[tool.briefcase.app.twiddler.macOS]
+requires = [
+    'toga-cocoa>=0.3.0.dev20',
+]
+
+[tool.briefcase.app.twiddler.linux]
+requires = [
+    'toga-gtk>=0.3.0.dev20',
+]
+system_requires = [
+    'libgirepository1.0-dev',
+    'libcairo2-dev',
+    'libpango1.0-dev',
+    'libwebkitgtk-3.0-0',
+    'gir1.2-webkit-3.0',
+]
+
+[tool.briefcase.app.twiddler.windows]
+requires = [
+    'toga-winforms>=0.3.0.dev20',
+]
+
+# Mobile deployments
+[tool.briefcase.app.twiddler.iOS]
+requires = [
+    'toga-iOS>=0.3.0.dev20',
+]
+
+[tool.briefcase.app.twiddler.android]
+requires = [
+    'toga-android>=0.3.0.dev20',
+]

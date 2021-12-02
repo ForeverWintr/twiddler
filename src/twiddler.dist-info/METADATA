@@ -1,0 +1,10 @@
+Metadata-Version: 2.1
+Briefcase-Version: 0.3.5
+Name: twiddler
+Formal-Name: Twiddler
+App-ID: ca.pylithic.twiddler
+Version: 0.0.1
+Home-page: https://pylithic.ca/twiddler
+Author: Pylithic Software Ltd.
+Author-email: info@pylithic.ca
+Summary: Parameter Tuner
