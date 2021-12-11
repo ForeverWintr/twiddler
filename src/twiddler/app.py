@@ -34,8 +34,15 @@ class Twiddler(toga.App):
                 style=Pack(padding=5)
             )
 
+        slider_box = toga.Box()
+
+        slider = toga.Slider(range=(0, 100), on_release=self.onchange, style=Pack(flex=.75))
+        slider_box.add(toga.Label('Slider', style=Pack(flex=.25)))
+        slider_box.add(slider)
+
         main_box.add(name_box)
         main_box.add(button)
+        main_box.add(slider_box)
 
         self.main_window = toga.MainWindow(title=self.formal_name)
         self.main_window.content = main_box
@@ -44,6 +51,9 @@ class Twiddler(toga.App):
 
     def say_hello(self, widget):
         print("Hello", self.name_input.value)
+
+    def onchange(self, x):
+        print(x.value)
 
 
 def main():
