@@ -4,6 +4,39 @@
 # Wing project file                                              #
 ##################################################################
 [project attributes]
+console.toolbox = [{'autosave': False,
+                    'entry_point': 'Main',
+                    'id': 'cmd-W2mPbUOTFNp4bTnR',
+                    'io_encoding': None,
+                    'key_binding': None,
+                    'line_mode': True,
+                    'pseudo_tty': False,
+                    'raise_panel': True,
+                    'shared': False,
+                    'title': None}]
+debug.launch-configs = (2,
+                        {'launch-FyCQYltKqVmTwy3S': ({},
+        {'buildcmd': ('project',
+                      None),
+         'env': ('project',
+                 ['']),
+         'name': 'Launch app',
+         'pyexec': ('project',
+                    ''),
+         'pypath': ('project',
+                    []),
+         'pyrunargs': ('project',
+                       '-u'),
+         'runargs': 'dev',
+         'rundir': ('project',
+                    '')})})
+debug.named-entry-points = (1,
+                            {'Main': ({'key-binding-debug': 'F10'},
+                                      {'auto-show': False,
+                                       'launch-id': ('custom',
+        ('',
+         'launch-FyCQYltKqVmTwy3S')),
+                                       'loc': loc('src/twiddler/__main__.py')})})
 proj.directory-list = [{'dirloc': loc('.'),
                         'excludes': ['twiddler'],
                         'filter': '*',
@@ -13,7 +46,10 @@ proj.directory-list = [{'dirloc': loc('.'),
 proj.file-type = 'shared'
 proj.launch-config = {loc('src/twiddler/__main__.py'): ('project',
         ('dev',
-         ''))}
+         'launch-FyCQYltKqVmTwy3S')),
+                      loc('src/twiddler/app.py'): ('custom',
+        ('',
+         'launch-FyCQYltKqVmTwy3S'))}
 testing.auto-test-file-specs = (('glob',
                                  'test_*.py'),)
 testing.test-framework = {None: ':internal pytest'}
