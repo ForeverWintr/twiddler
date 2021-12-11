@@ -44,7 +44,10 @@ proj.directory-list = [{'dirloc': loc('.'),
                         'recursive': True,
                         'watch_for_changes': True}]
 proj.file-type = 'shared'
-proj.launch-config = {loc('src/twiddler/__main__.py'): ('project',
+proj.launch-config = {loc('src/test/sample_cli.py'): ('project',
+        ('a',
+         'launch-FyCQYltKqVmTwy3S')),
+                      loc('src/twiddler/__main__.py'): ('project',
         ('dev',
          'launch-FyCQYltKqVmTwy3S')),
                       loc('src/twiddler/app.py'): ('custom',
