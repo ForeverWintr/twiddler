@@ -52,6 +52,9 @@ proj.launch-config = {loc('src/test/sample_cli.py'): ('project',
          'launch-FyCQYltKqVmTwy3S')),
                       loc('src/twiddler/app.py'): ('custom',
         ('',
+         'launch-FyCQYltKqVmTwy3S')),
+                      loc('src/twiddler/runner.py'): ('project',
+        ('',
          'launch-FyCQYltKqVmTwy3S'))}
 testing.auto-test-file-specs = (('glob',
                                  'test_*.py'),)
