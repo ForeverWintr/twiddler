@@ -3,6 +3,8 @@ import typing as tp
 import asyncio
 from pathlib import Path
 
+import toga
+
 
 @dataclasses.dataclass(frozen=True)
 class Argument:
@@ -18,6 +20,7 @@ class Argument:
 
 class Runner:
     def __init__(self, base_args: tp.Iterable[str], path: Path, arguments: tp.Iterable[Argument]):
+        """Corresponds to a program cli."""
         self.base_args = list(base_args)
         self.path = path
         self.arguments = tuple(arguments)

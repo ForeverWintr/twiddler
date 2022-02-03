@@ -1,9 +1,15 @@
 """
 Parameter Tuner
 """
+import sys
+from pathlib import Path
+
 import toga
 from toga.style import Pack
 from toga.style.pack import COLUMN, ROW
+
+
+from twiddler.runner import Runner
 
 
 class Twiddler(toga.App):
@@ -17,6 +23,8 @@ class Twiddler(toga.App):
         show the main window.
         """
         main_box = toga.Box(style=Pack(direction=COLUMN))
+
+        runner = Runner(base_args=[sys.executable, "sample_cli.py", "imaginary-argument"], path, arguments)
 
         name_label = toga.Label(
                 'Your name: ',
