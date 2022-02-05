@@ -24,6 +24,14 @@ class Runner:
         self.arguments = {a.name: a for a in arguments}
         self.running_task = None
 
+    def args_list(self) -> list[str]:
+        args = " ".join(str(a) for a in self.arguments.values()).split()
+        return self.base_args + args
+
+    def command_line(self) -> str:
+        """Return the command line for this runner"""
+        return " ".join(self.args_list())
+
     async def launch(self):
         """Start the command running, and return immediately"""
         args = " ".join(str(a) for a in self.arguments.values).split()

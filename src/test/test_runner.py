@@ -17,3 +17,10 @@ async def test_runner_run():
     assert r == 0
 
     assert 0
+
+
+def test_runner_command_line():
+    sleep = runner.Argument(0.001, name="sleep")
+    r = runner.Runner(["python", "sample_cli.py", "asdf"], path=Path("."), arguments=[sleep])
+
+    assert r.command_line() == "python sample_cli.py asdf --sleep 0.001"
