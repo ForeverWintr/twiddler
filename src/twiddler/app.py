@@ -44,9 +44,12 @@ class Twiddler(toga.App):
 
     def build_control_box(self, runner: Runner) -> toga.Box:
         control_box = toga.Box(style=Pack(direction=COLUMN, flex=1))
-        for arg in runner.arguments:
+        for name, arg in runner.arguments.items():
             s = toga.Slider(
-                range=(arg.min, arg.max), on_change=self.slider_changed, style=Pack(flex=2), id=arg
+                range=(arg.min, arg.max),
+                on_change=self.slider_changed,
+                style=Pack(flex=2),
+                id=name,
             )
             label = toga.Label(arg.name, style=Pack(flex=1))
             slider_box = toga.Box(children=(label, s))
@@ -54,7 +57,7 @@ class Twiddler(toga.App):
         return control_box
 
     def slider_changed(self, x):
-        self.text_display.value = f"{x.id.name}: {x.value:.2f}\n"
+        self.text_display.value = f"{x.id}: {x.value:.2f}\n"
 
 
 def main():

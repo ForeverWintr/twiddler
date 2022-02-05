@@ -21,12 +21,12 @@ class Runner:
         """Corresponds to a program cli."""
         self.base_args = list(base_args)
         self.path = path
-        self.arguments = tuple(arguments)
+        self.arguments = {a.name: a for a in arguments}
         self.running_task = None
 
     async def launch(self):
         """Start the command running, and return immediately"""
-        args = " ".join(str(a) for a in self.arguments).split()
+        args = " ".join(str(a) for a in self.arguments.values).split()
         cmd = self.base_args + args
         self.running_task = await asyncio.create_subprocess_exec(*cmd)
         return self.running_task
