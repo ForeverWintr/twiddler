@@ -9,11 +9,10 @@ from toga.style import Pack
 from toga.style.pack import COLUMN, ROW
 
 
-from twiddler.runner import Runner
+from twiddler.runner import Runner, Argument
 
 
 class Twiddler(toga.App):
-
     def startup(self):
         """
         Construct and show the Toga application.
@@ -24,43 +23,33 @@ class Twiddler(toga.App):
         """
         main_box = toga.Box(style=Pack(direction=COLUMN))
 
-        runner = Runner(base_args=[sys.executable, "sample_cli.py", "imaginary-argument"], path, arguments)
+        runner = Runner(
+            base_args=[sys.executable, "sample_cli.py", "imaginary-argument"],
+            path=Path("."),
+            arguments=(
+                Argument(
+                    0,
+                    name="sleep",
+                ),
+            ),
+        )
 
-        name_label = toga.Label(
-                'Your name: ',
-                style=Pack(padding=(0, 5))
+        control_box = toga.Box(style=Pack(direction=COLUMN))
+        for arg in runner.arguments:
+            s = toga.Slider(
+                range=(arg.min, arg.max), on_change=self.slider_changed, style=Pack(flex=2)
             )
-        self.name_input = toga.TextInput(style=Pack(flex=1))
+            label = toga.Label(arg.name, style=Pack(flex=0.1))
+            slider_box = toga.Box(children=(label, s))
+            control_box.add(slider_box)
 
-        name_box = toga.Box(style=Pack(direction=ROW, padding=5))
-        name_box.add(name_label)
-        name_box.add(self.name_input)
-
-        button = toga.Button(
-                'Say Hello!',
-                on_press=self.say_hello,
-                style=Pack(padding=5)
-            )
-
-        slider_box = toga.Box()
-
-        slider = toga.Slider(range=(0, 100), on_release=self.onchange, style=Pack(flex=.75))
-        slider_box.add(toga.Label('Slider', style=Pack(flex=.25)))
-        slider_box.add(slider)
-
-        main_box.add(name_box)
-        main_box.add(button)
-        main_box.add(slider_box)
+        main_box.add(control_box)
 
         self.main_window = toga.MainWindow(title=self.formal_name)
         self.main_window.content = main_box
         self.main_window.show()
 
-
-    def say_hello(self, widget):
-        print("Hello", self.name_input.value)
-
-    def onchange(self, x):
+    def slider_changed(self, x):
         print(x.value)
 
 

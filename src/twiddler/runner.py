@@ -3,8 +3,6 @@ import typing as tp
 import asyncio
 from pathlib import Path
 
-import toga
-
 
 @dataclasses.dataclass(frozen=True)
 class Argument:
