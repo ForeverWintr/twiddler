@@ -34,7 +34,5 @@ class Runner:
 
     async def launch(self):
         """Start the command running, and return immediately"""
-        args = " ".join(str(a) for a in self.arguments.values).split()
-        cmd = self.base_args + args
-        self.running_task = await asyncio.create_subprocess_exec(*cmd)
+        self.running_task = await asyncio.create_subprocess_exec(*self.args_list())
         return self.running_task
