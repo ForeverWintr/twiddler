@@ -24,3 +24,7 @@ def test_runner_command_line():
     r = runner.Runner(["python", "sample_cli.py", "asdf"], path=Path("."), arguments=[sleep])
 
     assert r.command_line() == "python sample_cli.py asdf --sleep 0.001"
+
+
+def test_arg_tick_count():
+    assert runner.Argument(0, name="", min=-5, max=5).tick_count == 11

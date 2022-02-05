@@ -3,6 +3,7 @@ Parameter Tuner
 """
 import sys
 from pathlib import Path
+import dataclasses
 
 import toga
 from toga.style import Pack
@@ -23,20 +24,21 @@ class Twiddler(toga.App):
         """
         main_box = toga.Box(style=Pack(direction=COLUMN))
 
-        runner = Runner(
+        self.runner = Runner(
             base_args=[sys.executable, "sample_cli.py", "imaginary-argument"],
             path=Path("."),
             arguments=(
                 Argument(
                     0,
                     name="sleep",
+                    max=5,
                 ),
             ),
         )
 
         self.text_display = toga.MultilineTextInput(readonly=True, style=Pack(flex=2))
         main_box.add(self.text_display)
-        main_box.add(self.build_control_box(runner))
+        main_box.add(self.build_control_box(self.runner))
 
         self.main_window = toga.MainWindow(title=self.formal_name)
         self.main_window.content = main_box
@@ -47,9 +49,10 @@ class Twiddler(toga.App):
         for name, arg in runner.arguments.items():
             s = toga.Slider(
                 range=(arg.min, arg.max),
-                on_change=self.slider_changed,
+                on_release=self.slider_changed,
                 style=Pack(flex=2),
                 id=name,
+                tick_count=arg.tick_count,
             )
             label = toga.Label(arg.name, style=Pack(flex=1))
             slider_box = toga.Box(children=(label, s))
@@ -57,7 +60,11 @@ class Twiddler(toga.App):
         return control_box
 
     def slider_changed(self, x):
-        self.text_display.value = f"{x.id}: {x.value:.2f}\n"
+        """Update argument and launch"""
+        arg = self.runner.arguments[x.id]
+        new_arg = dataclasses.replace(arg, value=x.value)
+        self.runner.arguments[x.id] = new_arg
+        self.text_display.value = f"{self.runner.command_line()}\n"
 
 
 def main():

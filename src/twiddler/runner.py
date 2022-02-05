@@ -15,6 +15,11 @@ class Argument:
     def __str__(self):
         return f"--{self.name} {self.value}"
 
+    @property
+    def tick_count(self):
+        """Number of ticks for a slider"""
+        return ((self.max - self.min) // self.step) + 1
+
 
 class Runner:
     def __init__(self, base_args: tp.Iterable[str], path: Path, arguments: tp.Iterable[Argument]):
